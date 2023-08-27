@@ -1,19 +1,14 @@
-package com.example.product_list.presentation
+package com.example.product_list.presentation.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.product_list.R
 import com.example.product_list.databinding.ItemShopDisabledBinding
 import com.example.product_list.databinding.ItemShopEnabledBinding
-import com.example.product_list.domain.ShopItem
+import com.example.product_list.domain.entity.ShopItem
 
 class ShopListAdapter : ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCallBack()) {
 

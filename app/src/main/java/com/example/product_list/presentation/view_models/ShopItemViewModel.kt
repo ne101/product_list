@@ -1,23 +1,22 @@
-package com.example.product_list.presentation
+package com.example.product_list.presentation.view_models
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.product_list.data.ShopListRepositoryImpl
-import com.example.product_list.domain.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
+import com.example.product_list.data.repository.ShopListRepositoryImpl
+import com.example.product_list.domain.entity.ShopItem
+import com.example.product_list.domain.usecase.AddShopItemUseCase
+import com.example.product_list.domain.usecase.EditShopItemUseCase
+import com.example.product_list.domain.usecase.GetShopItemUseCase
+import com.example.product_list.domain.usecase.GetShopListUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ShopItemViewModel(application: Application) : AndroidViewModel(application) {
+class ShopItemViewModel @Inject constructor(
+    private val getShopItemUseCase: GetShopItemUseCase,
+    private val addShopItemUseCase: AddShopItemUseCase,
+    private val editShopItemUseCase: EditShopItemUseCase
+) : ViewModel() {
 
-//    private val scope = CoroutineScope(Dispatchers.IO)
-
-    private val repository = ShopListRepositoryImpl(application)
-
-    private val getShopItemUseCase = GetShopItemUseCase(repository)
-    private val addShopItemUseCase = AddShopItemUseCase(repository)
-    private val editShopItemUseCase = EditShopItemUseCase(repository)
 
     private val _errorInputName = MutableLiveData<Boolean>()
     private val _errorInputCount = MutableLiveData<Boolean>()

@@ -1,4 +1,4 @@
-package com.example.product_list.presentation
+package com.example.product_list.presentation.binding
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
