@@ -1,17 +1,19 @@
-package com.example.product_list.presentation
+package com.example.product_list.presentation.activities
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.product_list.R
 import com.example.product_list.databinding.ActivityMainBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.product_list.presentation.ShopApplication
+import com.example.product_list.presentation.view_models.MainViewModel
+import com.example.product_list.presentation.fragments.ShopItemFragment
+import com.example.product_list.presentation.adapters.ShopListAdapter
+import com.example.product_list.presentation.view_models.ViewModelFactory
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,12 +21,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: ShopListAdapter
     private lateinit var binding: ActivityMainBinding
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as ShopApplication).component
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
+
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupRecyclerView()
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         viewModel.shopList.observe(this) {
             adapter.submitList(it)
         }

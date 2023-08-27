@@ -1,16 +1,15 @@
-package com.example.product_list.presentation
+package com.example.product_list.presentation.activities
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.product_list.R
-import com.example.product_list.domain.ShopItem
+import com.example.product_list.domain.entity.ShopItem
+import com.example.product_list.presentation.fragments.ShopItemFragment
+import com.example.product_list.presentation.view_models.ShopItemViewModel
 import com.google.android.material.textfield.TextInputLayout
 
 class ShopItemActivity : AppCompatActivity() {
